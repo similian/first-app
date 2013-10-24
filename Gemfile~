@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 
 # Use PostgreSql as the database for Active Record
 gem 'pg'
@@ -31,13 +31,20 @@ gem 'jbuilder', '~> 1.2'
 # only want sqlite in dev and test envs
 group :development, :test do
   gem 'sqlite3'
-end
+end	
 
 
 group :doc do
 
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'pg' # dont want sqlite in production
+  gem 'unicorn' # make sure you follow installation instructions for this gem
+  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
 # Use ActiveModel has_secure_password
